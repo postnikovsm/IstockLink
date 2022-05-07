@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class MenuButton {
     @BeforeAll
@@ -56,7 +55,45 @@ public class MenuButton {
         $(".layout-messenger__header").shouldHave(text("Мессенджер"));
 
         //переход по наведению
+        $(".snm-short-section",4).hover();
+        $(".snm-short-tooltip",4).click();
+        $(".breadcrumbs__item").shouldHave(text("Задачи"));
+
+        $(".snm-short-section",3).hover();
+        $(".snm-short-tooltip",3).click();
+        $(".breadcrumbs__item").shouldHave(text("Заявки на закупку"));
+
+        $(".snm-short-section",2).hover();
+        $(".snm-short-tooltip",2).$(byText("Моя организация")).click();
+        $(".breadcrumbs__item").shouldHave(text("Данные о компании"));
+        $(".snm-short-section",2).hover();
+        $(".snm-short-tooltip",2).$(byText("Партнеры")).click();
+        $(".breadcrumbs__item").shouldHave(text("Мои партнеры"));
+        $(".snm-short-section",2).hover();
+        $(".snm-short-tooltip",2).$(byText("Сотрудники")).click();
+        $(".breadcrumbs__item").shouldHave(text("Сотрудники"));
+
         $(".snm-short-section",1).hover();
+        $(".snm-short-tooltip",1).$(byText("Мой профиль")).click();
+        $(".breadcrumbs__item").shouldHave(text("Мой профиль"));
+        $(".snm-short-section",1).hover();
+        $(".snm-short-tooltip",1).$(byText("Хранилище файлов")).click();
+        $(".breadcrumbs__item").shouldHave(text("Хранилище файлов"));
+
+        $(".snm-short-section",0).hover();
+        $(".snm-short-tooltip",0).$(byText("Мессенджер")).click();
+        $(".layout-messenger__header").shouldHave(text("Мессенджер"));
+        // резвернуть меню
+        $(".snm-header__arrow").click();
+        sleep(2000
+        );
+
+
+
+
+
+
+
 
 
     }
