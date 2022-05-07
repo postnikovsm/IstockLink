@@ -1,4 +1,4 @@
-package tests.button;
+package tests.clicks;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class AllButton {
+public class MenuButton {
     @BeforeAll
     static void beforeAll() {
         Configuration.browserSize = "1400x800";
@@ -39,23 +39,25 @@ public class AllButton {
         $(".layout-messenger__header").shouldHave(text("Мессенджер"));
 //свернуть меню
         $("div[class='snm-header']").click();
-
-        $("svg[xmlns=\"http://www.w3.org/2000/svg\"]").click();
+//переход по свернутым разделам
+        $(".snm-short-section",4).click();
         $(".breadcrumbs__item").shouldHave(text("Задачи"));
-        $("li[class='snm__icon'][herf='/requests/all']").click();
+
+        $(".snm-short-section",3).click();
         $(".breadcrumbs__item").shouldHave(text("Заявки на закупку"));
-        $("li[class='snm__icon'][herf='/company/edit']").click();
+
+        $(".snm-short-section",2).click();
         $(".breadcrumbs__item").shouldHave(text("Данные о компании"));
-        $("li[class='snm__icon'][herf='/requests/all']").click();
-        $(".breadcrumbs__item").shouldHave(text("Мои партнеры"));
-        $(".snm__sections").$(byText("Сотрудники")).click();
-        $(".breadcrumbs__item").shouldHave(text("Сотрудники"));
-        $(".snm__sections").$(byText("Мой профиль")).click();
+
+        $(".snm-short-section",1).click();
         $(".breadcrumbs__item").shouldHave(text("Мой профиль"));
-        $(".snm__sections").$(byText("Хранилище файлов")).click();
-        $(".breadcrumbs__item").shouldHave(text("Хранилище файлов"));
-        $(".snm__sections").$(byText("Мессенджер")).click();
+
+        $(".snm-short-section",0).click();
         $(".layout-messenger__header").shouldHave(text("Мессенджер"));
+
+        //переход по наведению
+        $(".snm-short-section",1).hover();
+
 
     }
 }
