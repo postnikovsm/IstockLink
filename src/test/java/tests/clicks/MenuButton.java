@@ -1,5 +1,6 @@
 package tests.clicks;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -99,11 +100,16 @@ public class MenuButton {
             $(".layout-messenger").shouldHave(text("Мессенджер"));
 
             $(".snm__sections").$(byText("Перейти в Goodwix")).click();
-            $(".logo").shouldHave(visible);
+            switchTo().window(1);
+            $(".default-left-form").shouldHave(Condition.text("Воспользуйтесь демо-версией," +
+                    " чтобы оценить возможности сервиса."));
             switchTo().window(0);
             $("div[class='snm-header']").click();
             $(".snm-short-section",5).click();
-            $(".logo").shouldHave(visible);
+            switchTo().window(1);
+            $(".default-left-form").shouldHave(Condition.text("Воспользуйтесь демо-версией," +
+                   " чтобы оценить возможности сервиса."));
+            switchTo().window(0);
             sleep(2000);
 
         }
@@ -116,6 +122,10 @@ public class MenuButton {
         $("button[name='loginUserButton']").click();
         $(".layout-messenger").shouldHave(text("Мессенджер"));
 
+        $(".logo").click();
+        //написать строку определение страницы
+        switchTo().window(0);
+        $(".logo").click();
 
 
     }
