@@ -1,6 +1,7 @@
 package tests.request;
 
 import com.codeborne.selenide.Configuration;
+import io.qameta.allure.Owner;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -19,6 +20,7 @@ public class CreateRequests {
     }
 
     @Test
+    @Owner("Сантьяго")
     void createRequestsWithFillForm() {
         step("Авторизация в мессенджере и переход в заявки на закупку", () -> {
             AuthorizationPage authorizationPage = new AuthorizationPage();
