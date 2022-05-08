@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+import pages.AuthorizationPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byId;
@@ -17,11 +18,8 @@ public class CreateRequests {
     }
     @Test
     void createRequestsWithFillForm() {
-        open("https://messenger.test.istock.link/login");
-        $("input[name='email']").setValue("istock.link.test@rambler.ru");
-        $("input[name='password']").setValue("123123123");
-        $("button[name='loginUserButton']").click();
-        $(".layout-messenger").shouldHave(text("Мессенджер"));
+        AuthorizationPage authorizationPage = new AuthorizationPage();
+        authorizationPage.authorizationPage("istock.link.test@rambler.ru", "123123123");
 
         $(".snm__sections").$(byText("Заявки на закупку")).click();
 
@@ -32,10 +30,7 @@ public class CreateRequests {
         $$("#title-form").findBy(text("Наименование заявки "))
                 .sibling(1).$("#title").setValue("11111111");
 
-        $$("#title-form").findBy(text("Наименование заявки "))
-                .sibling(1).$("#title").sendKeys(Keys.chord(Keys.CONTROL,"A"));
-        $$("#title-form").findBy(text("Наименование заявки "))
-                .sibling(1).$("#title").sendKeys(Keys.chord(Keys.CONTROL,"C"));
+
 
         $(".category-select").setValue("Автоматизированные").pressEnter();
 
@@ -54,8 +49,20 @@ public class CreateRequests {
 
         $(".btn-default").click();
 
-        //$(byId("0pr-name")).click();
+
         $(byId("0pr-name")).setValue("ffff");
+        $(".input-number-bootstrap").setValue("111");
+        $(".product-table-number",1).click();
+        $(".product-table-number",1).$("input[type='number']").setValue("2");
+
+        $$(".btn-default").findBy(text("Содержание заявки")).click();
+        $(".panel-body").setValue("ddddd");
+
+        $$(".btn-default").findBy(text("Цена закупки")).click();
+
+       // $(".input-number-bootstrap  form-control",1).setValue("100");
+
+
         sleep(5000);
         $(".product-table-number").click();
         $(".product-table-number").sendKeys("111");
