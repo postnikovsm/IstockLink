@@ -106,6 +106,8 @@ public class MenuButton {
     }
 
         @Test
+        @Story("Переход в goodwix")
+        @Owner("Олехандро")
         void clickGB(){
             step("Авторизация в мессенджере", () -> {
                 AuthorizationPage authorizationPage = new AuthorizationPage();

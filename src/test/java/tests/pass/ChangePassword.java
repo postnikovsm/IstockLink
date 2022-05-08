@@ -2,6 +2,8 @@ package tests.pass;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -20,6 +22,8 @@ public class ChangePassword {
         Configuration.browserSize = "1400x800";
     }
     @Test
+    @Story("Изменение пароля")
+    @Owner("Олехандро")
     void changePasswordFromProfile(){
         AuthorizationPage authorizationPage = new AuthorizationPage();
         step("Авторизация в мессенджере", () -> {
@@ -50,10 +54,6 @@ public class ChangePassword {
             $("#saveCharacteristicButton").click();
             $("button[type='button'][class='snm-link']").click();
         });
-
-
-
-
 
     }
 }
