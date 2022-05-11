@@ -2,8 +2,10 @@ package tests.clicks;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pages.AuthorizationPage;
@@ -22,7 +24,9 @@ public class MenuButton {
     @Test
     @Story("Переход по всем разделам")
     @Owner("Олехандро")
+
     void clickAllButton() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
         step("Авторизация в мессенджере", () -> {
             AuthorizationPage authorizationPage = new AuthorizationPage();
             authorizationPage.authorizationPage("istock.link.test@rambler.ru", "123123123");
