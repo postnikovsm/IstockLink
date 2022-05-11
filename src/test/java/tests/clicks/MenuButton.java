@@ -130,8 +130,10 @@ public class MenuButton {
 
     @Test
     void clickTopMenu(){
-        AuthorizationPage authorizationPage = new AuthorizationPage();
-        authorizationPage.authorizationPage("istock.link.test@rambler.ru", "123123123");
+        step("Авторизация в мессенджере", () -> {
+            AuthorizationPage authorizationPage = new AuthorizationPage();
+            authorizationPage.authorizationPage("istock.link.test@rambler.ru", "123123123");
+        });
 
         $(".logo").click();
         //написать строку определение страницы
