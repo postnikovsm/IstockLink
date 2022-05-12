@@ -72,7 +72,26 @@ public class MenuButton {
             $(".layout-messenger__header").shouldHave(text("Мессенджер"));
         });
 
+        step("Переход по наведению", () -> {
+            $(".snm-short-section", 4).hover();
+            $(".snm-short-tooltip", 4).click();
+            $(".breadcrumbs__item").shouldHave(text("Задачи"));
 
+            $(".snm-short-section", 3).hover();
+            $(".snm-short-tooltip", 3).click();
+            $(".breadcrumbs__item").shouldHave(text("Заявки на закупку"));
+
+            $(".snm-short-section", 2).hover();
+            $(".snm-short-tooltip", 2).$(byText("Моя организация")).click();
+            $(".breadcrumbs__item").shouldHave(text("Данные о компании"));
+            $(".snm-short-section", 2).hover();
+            $(".snm-short-tooltip", 2).$(byText("Партнеры")).click();
+            $(".breadcrumbs__item").shouldHave(text("Мои партнеры"));
+            $(".snm-short-section", 2).hover();
+            $(".snm-short-tooltip", 2).$(byText("Сотрудники")).click();
+            $(".breadcrumbs__item").shouldHave(text("Сотрудники"));
+        });
+        //переход по наведению
 
 //свернуть меню
 
