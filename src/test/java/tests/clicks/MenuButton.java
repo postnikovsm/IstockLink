@@ -8,6 +8,8 @@ import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import pages.AuthorizationPage;
 
 import static com.codeborne.selenide.Condition.text;
@@ -139,10 +141,23 @@ public class MenuButton {
             authorizationPage.authorizationPage("istock.link.test@rambler.ru", "123123123");
         });
 
+
         $(".logo").click();
-        //написать строку определение страницы
-        switchTo().window(0);
-        $(".logo").click();
+        open("https://messenger.test.istock.link");
+
+        $(".language-switcher").click();
+        $(".language-switcher__list").$(byText("Eng")).click();
+        $(".layout-simple__navigation").shouldHave(text("Messenger"));
+        $(".language-switcher").click();
+        $(".language-switcher__list").$(byText("Rus")).click();
+        $(".layout-messenger__header").shouldHave(text("Мессенджер"));
+
+        $(".layout-simple__header-user-name").click();
+        $(".breadcrumbs__item").shouldHave(text("Мой профиль"));
+        open("https://messenger.test.istock.link");
+
+        $("button[type='button'][class='snm-link']").click();
+        $(".messenger-title").shouldHave(text("Мессенджер"));
     }
 
 }
