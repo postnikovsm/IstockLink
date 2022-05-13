@@ -36,7 +36,7 @@ public class MessengerClicks {
         $(".cws-tabs__tab",1).click();
         $(".cws-tabs__tab",0).click();
         $(".cws-dashboard__left").$(byText("Все контакты")).click();
-        $(".open").$(byText("Заблокированные")).click();
+        $(".cws-dropdown-menu-item_color_gray",2).click();
        sleep(2000);
 
 
