@@ -3,6 +3,7 @@ package tests.clicks;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import com.codeborne.selenide.selector.ByText;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -143,6 +144,9 @@ public class MenuButton {
 
 
         $(".logo").click();
+        $(".flex-right").$(byText("Вход")).click();
+        switchTo().window(1);
+        switchTo().window(0);
         open("https://messenger.test.istock.link");
 
         $(".language-switcher").click();
