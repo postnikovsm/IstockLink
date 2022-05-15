@@ -41,7 +41,9 @@ public class MessengerClicks {
         $(".cws-dropdown-menu-item_color_gray",1).click();
         $(".cws-dashboard__left").$(byText("Активные")).click();
         $(".cws-dropdown-menu-item_color_gray",0).click();
-       sleep(2000);
+
+
+
 
 
 
