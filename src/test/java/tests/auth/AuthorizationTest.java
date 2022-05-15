@@ -4,6 +4,9 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -23,21 +26,19 @@ public class AuthorizationTest {
         $("button[name='loginUserButton']").click();
         $(".layout-messenger").shouldHave(text("Мессенджер"));
     }
-    @Test
-    void authorizationNegativeEmailFormTest() {
+
+    @CsvSource({
+            "00000000, 00000000, Пользователь с таким логином не зарегистрирован",
+            "postnikov.smm@mail.ru, 00000000, Вы ввели неправильный пароль"
+    })
+    @ParameterizedTest(name = "Авторизация по логину {0} и паролю {1}")
+    void authorizationNegativeEmailFormTest(String email, String password, String result) {
         open("https://messenger.test.istock.link/login");
-        $("input[name='email']").setValue("00000");
-        $("input[name='password']").setValue("00000");
+        $("input[name='email']").setValue(email);
+        $("input[name='password']").setValue(password);
         $("button[name='loginUserButton']").click();
-        $("#errorText").shouldHave(text("Пользователь с таким логином не зарегистрирован"));
+        $("#errorText").shouldHave(text(result));
     }
-    @Test
-    void authorizationNegativePasswordFormTest() {
-        open("https://messenger.test.istock.link/login");
-        $("input[name='email']").setValue("postnikov.smm@mail.ru");
-        $("input[name='password']").setValue("00000");
-        $("button[name='loginUserButton']").click();
-        $("#errorText").shouldHave(text("Вы ввели неправильный пароль"));
-    }
+
 }
 
